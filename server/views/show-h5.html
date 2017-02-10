@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-cn">
+
+<head>
+    {% block meta %} {% include "./_inc/meta.html" %} {% endblock %}
+    <title>{% block title %}亿账通-h5展示 {{title}}{% endblock %}</title>
+    <link rel="stylesheet" href="client/css/common.css">
+    <link rel="stylesheet" href="client/css/animate.css">
+    <link rel="stylesheet" href="client/css/show-h5.css">
+</head>
+<body>
+    <section class="show-content">
+        <div class="phone-wrap">
+            <div class="h5-wrap">
+                <iframe src="" frameborder="0" class="h5-content" id="h5Content" name="h5ContentName"></iframe>
+            </div>
+        </div>
+        <div id="showH5Btn">
+            <div class="icon-pre"></div>
+            <div class="page-index"></div>
+            <div class="icon-next"></div>
+        </div>
+    </section>
+</body>
+{% block script %}
+    <script src="client/js/jquery-2.1.0.min.js"></script>
+    {% if slug != null %}
+     <script src="client/js/{{slug}}.js"></script>
+    {% endif %}
+{% endblock %}
+</html>

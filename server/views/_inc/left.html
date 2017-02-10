@@ -1,0 +1,26 @@
+<aside class="aside-left" id='pageContainer'>
+	<h1 class="title">我的模板</h1>
+    {% if data %}
+        {% set i = 0 %}
+        {% for page in data.pages %}
+            {% set i = i+1 %}
+            <section class="page-wrap{% if i==1 %} page-sel{% endif %}" id="page{{ i }}">
+                <div class="page"></div>
+                <ul class="page-handle">
+                    <li class="add" title="新增"></li>
+                    <li class="copy" title="复制" data-page="page{{ i }}"></li>
+                    <li class="delete" title="删除" data-page="page{{ i }}"></li>
+                </ul>
+            </section>
+        {% endfor %}
+    {% else %} 
+         <section class="page-wrap page-sel" id="page1">
+            <div class="page"></div>
+            <ul class="page-handle">
+                <li class="add" title="新增"></li>
+                <li class="copy" title="复制" data-page="page1"></li>
+                <li class="delete" title="删除" data-page="page1"></li>
+            </ul>
+        </section>
+    {% endif %}
+</aside>

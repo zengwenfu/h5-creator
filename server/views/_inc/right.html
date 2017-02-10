@@ -1,0 +1,355 @@
+<aside class="aside-right">
+    <!-- background start -->
+    <section class="attr-wrap active" id="bgAttr">
+        <h1 class="bg-h">背景</h1>
+        <div class="bg-col-setting form-line">
+            <label class="lb">背景色</label>
+            <input type="text" class="attr-input jscolor {valueElement:'bgColor', styleElement:'showBgColor',value:''}" onchange="update(this.value)" oninput="update(this.value)" value="fff" id='bgColor'>
+            <span id="showBgColor" class="attr-input show-col"></span>
+        </div>
+        <h1 class="img-t">背景图片</h1>
+        <div class="img-sel" id='upload-area'>
+            <div class="add"></div>
+            <div class="size-tip">
+                <div>拖拽图片到此处上传</div>
+                <div>（最佳尺寸:750×1206）</div>
+            </div>
+            <div class="img-selected"></div>
+        </div>
+        <div class="btn-wrap">
+            <button class="btn img-change" id="bgChange" type="button">更换背景</button>
+            <button class="btn" id="bgDelete" type="button">删除</button>
+        </div>
+        <div class="attr-h page-animate">
+            <h1  class="sel" data-id="pageInAnimate">入场动画</h1>
+            <h1 data-id="pageOutAnimate">出场动画</h1>
+        </div>
+        <div>
+            <section id="pageInAnimate">
+                <div class="form-line">
+                    <label>入场动画持续</label>
+                    <input type="text" class="attr-input" value="0.5" id="">s
+                </div>
+                <!-- 通过父元素来确定所选的动画效果 -->
+                {% block animatein %} {% include "./animation.html" %} {% endblock %}
+            </section>
+            <section id="pageOutAnimate" class="hidden">
+                <div class="form-line">
+                    <label>出场动画持续</label>
+                    <input type="text" class="attr-input" value="0.5" id="">s
+                </div>
+                {% block animateout %} {% include "./animation.html" %} {% endblock %}
+            </section>
+        </div>
+    </section>
+    <!-- background end -->
+    <!-- text start -->
+    <section class="attr-wrap" id="textAttr">
+        <header class="attr-h" id='tabHandler'>
+            <h1  class="sel">文本</h1>
+            <h1>动画</h1>
+        </header>
+        <section class="attr text-tab" id="textAttrSet">
+            <div class="form-line">
+                <label class="lb">字号</label>
+                <input type="text" class="attr-input" value="12" id='textFS'>
+            </div>
+            <div class="form-line">
+                <label class="lb">颜色</label>
+                <input type="text" class="attr-input jscolor {valueElement:'textColor', styleElement:'showTextColor',value:'000'}" onchange="updateTextColor(this.value)" oninput="updateTextColor(this.value)" value="000" id='textColor'>
+                <span id="showTextColor" class="attr-input show-col"></span>
+            </div>
+            <div class="form-line">
+                <label class="lb">透明度</label>
+                <input type="text" class="attr-input" value="100" id='textOpacity'>
+            </div>
+            <div class="form-line">
+                <label class="lb">宽度</label>
+                <input type="text" class="attr-input" value="100" id="textWidth">
+                <label class="lb pl-lb">高度</label>
+                <input type="text" class="attr-input" value="100" id='textHeight'>px
+            </div>
+            <div class="form-line">
+                <label class="lb">位置X</label>
+                <input type="text" class="attr-input" value="110" id='textX'>
+                <label class="lb pl-lb">位置Y</label>
+                <input type="text" class="attr-input" value="234" id='textY'>px
+            </div>
+        </section>
+        <section class="text-tab hidden" id="bgAnimation">
+            <div class="form-line">
+                <label class="lb">持续</label>
+                <input type="text" class="attr-input" value="0.5" id="textAniDuration">s
+            </div>
+            <div class="form-line">
+                <label class="lb">间隔</label>
+                <input type="text" class="attr-input" value="1000" id="textAniTimeOut">ms
+            </div>
+            <select class="animation-type" id='textAnimate'>
+                <optgroup>
+                    <option value="selectAnimation">选择动画</option>
+                </optgroup>
+                <optgroup label="Attention Seekers">
+                    <option value="bounce">bounce</option>
+                    <option value="flash">flash</option>
+                    <option value="pulse">pulse</option>
+                    <option value="rubberBand">rubberBand</option>
+                    <option value="shake">shake</option>
+                    <option value="swing">swing</option>
+                    <option value="tada">tada</option>
+                    <option value="wobble">wobble</option>
+                    <option value="jello">jello</option>
+                </optgroup>
+                <optgroup label="Bouncing Entrances">
+                    <option value="bounceIn">bounceIn</option>
+                    <option value="bounceInDown">bounceInDown</option>
+                    <option value="bounceInLeft">bounceInLeft</option>
+                    <option value="bounceInRight">bounceInRight</option>
+                    <option value="bounceInUp">bounceInUp</option>
+                </optgroup>
+                <optgroup label="Bouncing Exits">
+                    <option value="bounceOut">bounceOut</option>
+                    <option value="bounceOutDown">bounceOutDown</option>
+                    <option value="bounceOutLeft">bounceOutLeft</option>
+                    <option value="bounceOutRight">bounceOutRight</option>
+                    <option value="bounceOutUp">bounceOutUp</option>
+                </optgroup>
+                <optgroup label="Fading Entrances">
+                    <option value="fadeIn">fadeIn</option>
+                    <option value="fadeInDown">fadeInDown</option>
+                    <option value="fadeInDownBig">fadeInDownBig</option>
+                    <option value="fadeInLeft">fadeInLeft</option>
+                    <option value="fadeInLeftBig">fadeInLeftBig</option>
+                    <option value="fadeInRight">fadeInRight</option>
+                    <option value="fadeInRightBig">fadeInRightBig</option>
+                    <option value="fadeInUp">fadeInUp</option>
+                    <option value="fadeInUpBig">fadeInUpBig</option>
+                </optgroup>
+                <optgroup label="Fading Exits">
+                    <option value="fadeOut">fadeOut</option>
+                    <option value="fadeOutDown">fadeOutDown</option>
+                    <option value="fadeOutDownBig">fadeOutDownBig</option>
+                    <option value="fadeOutLeft">fadeOutLeft</option>
+                    <option value="fadeOutLeftBig">fadeOutLeftBig</option>
+                    <option value="fadeOutRight">fadeOutRight</option>
+                    <option value="fadeOutRightBig">fadeOutRightBig</option>
+                    <option value="fadeOutUp">fadeOutUp</option>
+                    <option value="fadeOutUpBig">fadeOutUpBig</option>
+                </optgroup>
+                <optgroup label="Flippers">
+                    <option value="flip">flip</option>
+                    <option value="flipInX">flipInX</option>
+                    <option value="flipInY">flipInY</option>
+                    <option value="flipOutX">flipOutX</option>
+                    <option value="flipOutY">flipOutY</option>
+                </optgroup>
+                <optgroup label="Lightspeed">
+                    <option value="lightSpeedIn">lightSpeedIn</option>
+                    <option value="lightSpeedOut">lightSpeedOut</option>
+                </optgroup>
+                <optgroup label="Rotating Entrances">
+                    <option value="rotateIn">rotateIn</option>
+                    <option value="rotateInDownLeft">rotateInDownLeft</option>
+                    <option value="rotateInDownRight">rotateInDownRight</option>
+                    <option value="rotateInUpLeft">rotateInUpLeft</option>
+                    <option value="rotateInUpRight">rotateInUpRight</option>
+                </optgroup>
+                <optgroup label="Rotating Exits">
+                    <option value="rotateOut">rotateOut</option>
+                    <option value="rotateOutDownLeft">rotateOutDownLeft</option>
+                    <option value="rotateOutDownRight">rotateOutDownRight</option>
+                    <option value="rotateOutUpLeft">rotateOutUpLeft</option>
+                    <option value="rotateOutUpRight">rotateOutUpRight</option>
+                </optgroup>
+                <optgroup label="Sliding Entrances">
+                    <option value="slideInUp">slideInUp</option>
+                    <option value="slideInDown">slideInDown</option>
+                    <option value="slideInLeft">slideInLeft</option>
+                    <option value="slideInRight">slideInRight</option>
+                </optgroup>
+                <optgroup label="Sliding Exits">
+                    <option value="slideOutUp">slideOutUp</option>
+                    <option value="slideOutDown">slideOutDown</option>
+                    <option value="slideOutLeft">slideOutLeft</option>
+                    <option value="slideOutRight">slideOutRight</option>
+                </optgroup>
+                <optgroup label="Zoom Entrances">
+                    <option value="zoomIn">zoomIn</option>
+                    <option value="zoomInDown">zoomInDown</option>
+                    <option value="zoomInLeft">zoomInLeft</option>
+                    <option value="zoomInRight">zoomInRight</option>
+                    <option value="zoomInUp">zoomInUp</option>
+                </optgroup>
+                <optgroup label="Zoom Exits">
+                    <option value="zoomOut">zoomOut</option>
+                    <option value="zoomOutDown">zoomOutDown</option>
+                    <option value="zoomOutLeft">zoomOutLeft</option>
+                    <option value="zoomOutRight">zoomOutRight</option>
+                    <option value="zoomOutUp">zoomOutUp</option>
+                </optgroup>
+                <optgroup label="Specials">
+                    <option value="hinge">hinge</option>
+                    <option value="rollIn">rollIn</option>
+                    <option value="rollOut">rollOut</option>
+                </optgroup>
+            </select>
+        </section>
+        <button type="button" class="btn text-attr-delete" id='textDelete'>删除元素</button>
+    </section>
+    <!-- text end -->
+    <!-- img start -->
+    <section class="attr-wrap" id="imgAttr">
+        <header class="attr-h" id='imageTabHandler'>
+            <h1 class="sel">图片</h1>
+            <h1 class="">动画</h1>
+        </header>
+        <section id="uploadImg" class="image-tab">
+            <h1 class="img-t upload-img-t">上传图片</h1>
+            <div class="img-sel" id="image-upload-area">
+                <div class="add"></div>
+                <div class="size-tip">拖拽上传图片</div>
+                <div class="img-selected"></div>
+            </div>
+            <div class="btn-wrap">
+                <button class="btn img-change" id="imgChange" type="button">更换图片</button>
+                <button class="btn" id="imgDelete" type="button">删除</button>
+            </div>
+            <div class="form-line">
+                <label class="lb">宽度</label>
+                <input type="text" class="attr-input" value="100" id="imgWidth">
+                <label class="lb pl-lb">高度</label>
+                <input type="text" class="attr-input" value="100" id="imgHeight">px
+            </div>
+            <div class="form-line">
+                <label class="lb">位置X</label>
+                <input type="text" class="attr-input" value="110" id="imgX">
+                <label class="lb pl-lb">位置Y</label>
+                <input type="text" class="attr-input" value="234" id="imgY">px
+            </div>
+            <div class="form-line">
+                <label class="lb">透明度</label>
+                <input type="text" class="attr-input" value="100" id='imgOpacity'>%
+            </div>
+        </section>
+        <section class="image-tab hidden">
+            <div class="form-line">
+                <label class="lb">持续</label>
+                <input type="text" class="attr-input" value=".5" id='imgAniDuration'>s
+            </div>
+            <div class="form-line">
+                <label class="lb">间隔</label>
+                <input type="text" class="attr-input" value="1000" id='imgAniTimeOut'>ms
+            </div>
+            <select class="animation-type" id='imgAnimation'>
+                <optgroup>
+                    <option value="selectAnimation">选择动画</option>
+                </optgroup>
+                <optgroup label="Attention Seekers">
+                    <option value="bounce">bounce</option>
+                    <option value="flash">flash</option>
+                    <option value="pulse">pulse</option>
+                    <option value="rubberBand">rubberBand</option>
+                    <option value="shake">shake</option>
+                    <option value="swing">swing</option>
+                    <option value="tada">tada</option>
+                    <option value="wobble">wobble</option>
+                    <option value="jello">jello</option>
+                </optgroup>
+                <optgroup label="Bouncing Entrances">
+                    <option value="bounceIn">bounceIn</option>
+                    <option value="bounceInDown">bounceInDown</option>
+                    <option value="bounceInLeft">bounceInLeft</option>
+                    <option value="bounceInRight">bounceInRight</option>
+                    <option value="bounceInUp">bounceInUp</option>
+                </optgroup>
+                <optgroup label="Bouncing Exits">
+                    <option value="bounceOut">bounceOut</option>
+                    <option value="bounceOutDown">bounceOutDown</option>
+                    <option value="bounceOutLeft">bounceOutLeft</option>
+                    <option value="bounceOutRight">bounceOutRight</option>
+                    <option value="bounceOutUp">bounceOutUp</option>
+                </optgroup>
+                <optgroup label="Fading Entrances">
+                    <option value="fadeIn">fadeIn</option>
+                    <option value="fadeInDown">fadeInDown</option>
+                    <option value="fadeInDownBig">fadeInDownBig</option>
+                    <option value="fadeInLeft">fadeInLeft</option>
+                    <option value="fadeInLeftBig">fadeInLeftBig</option>
+                    <option value="fadeInRight">fadeInRight</option>
+                    <option value="fadeInRightBig">fadeInRightBig</option>
+                    <option value="fadeInUp">fadeInUp</option>
+                    <option value="fadeInUpBig">fadeInUpBig</option>
+                </optgroup>
+                <optgroup label="Fading Exits">
+                    <option value="fadeOut">fadeOut</option>
+                    <option value="fadeOutDown">fadeOutDown</option>
+                    <option value="fadeOutDownBig">fadeOutDownBig</option>
+                    <option value="fadeOutLeft">fadeOutLeft</option>
+                    <option value="fadeOutLeftBig">fadeOutLeftBig</option>
+                    <option value="fadeOutRight">fadeOutRight</option>
+                    <option value="fadeOutRightBig">fadeOutRightBig</option>
+                    <option value="fadeOutUp">fadeOutUp</option>
+                    <option value="fadeOutUpBig">fadeOutUpBig</option>
+                </optgroup>
+                <optgroup label="Flippers">
+                    <option value="flip">flip</option>
+                    <option value="flipInX">flipInX</option>
+                    <option value="flipInY">flipInY</option>
+                    <option value="flipOutX">flipOutX</option>
+                    <option value="flipOutY">flipOutY</option>
+                </optgroup>
+                <optgroup label="Lightspeed">
+                    <option value="lightSpeedIn">lightSpeedIn</option>
+                    <option value="lightSpeedOut">lightSpeedOut</option>
+                </optgroup>
+                <optgroup label="Rotating Entrances">
+                    <option value="rotateIn">rotateIn</option>
+                    <option value="rotateInDownLeft">rotateInDownLeft</option>
+                    <option value="rotateInDownRight">rotateInDownRight</option>
+                    <option value="rotateInUpLeft">rotateInUpLeft</option>
+                    <option value="rotateInUpRight">rotateInUpRight</option>
+                </optgroup>
+                <optgroup label="Rotating Exits">
+                    <option value="rotateOut">rotateOut</option>
+                    <option value="rotateOutDownLeft">rotateOutDownLeft</option>
+                    <option value="rotateOutDownRight">rotateOutDownRight</option>
+                    <option value="rotateOutUpLeft">rotateOutUpLeft</option>
+                    <option value="rotateOutUpRight">rotateOutUpRight</option>
+                </optgroup>
+                <optgroup label="Sliding Entrances">
+                    <option value="slideInUp">slideInUp</option>
+                    <option value="slideInDown">slideInDown</option>
+                    <option value="slideInLeft">slideInLeft</option>
+                    <option value="slideInRight">slideInRight</option>
+                </optgroup>
+                <optgroup label="Sliding Exits">
+                    <option value="slideOutUp">slideOutUp</option>
+                    <option value="slideOutDown">slideOutDown</option>
+                    <option value="slideOutLeft">slideOutLeft</option>
+                    <option value="slideOutRight">slideOutRight</option>
+                </optgroup>
+                <optgroup label="Zoom Entrances">
+                    <option value="zoomIn">zoomIn</option>
+                    <option value="zoomInDown">zoomInDown</option>
+                    <option value="zoomInLeft">zoomInLeft</option>
+                    <option value="zoomInRight">zoomInRight</option>
+                    <option value="zoomInUp">zoomInUp</option>
+                </optgroup>
+                <optgroup label="Zoom Exits">
+                    <option value="zoomOut">zoomOut</option>
+                    <option value="zoomOutDown">zoomOutDown</option>
+                    <option value="zoomOutLeft">zoomOutLeft</option>
+                    <option value="zoomOutRight">zoomOutRight</option>
+                    <option value="zoomOutUp">zoomOutUp</option>
+                </optgroup>
+                <optgroup label="Specials">
+                    <option value="hinge">hinge</option>
+                    <option value="rollIn">rollIn</option>
+                    <option value="rollOut">rollOut</option>
+                </optgroup>
+            </select>
+        </section>
+        <button type="button" class="btn text-attr-delete" id='imageItemDelete'>删除元素</button>
+    </section>
+    <!-- img end -->
+</aside>

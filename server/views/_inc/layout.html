@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-cn">
+
+<head>
+    {% block meta %} {% include "./meta.html" %} {% endblock %}
+    <title>{% block title %}菲麦前端 {{title}}{% endblock %}</title>
+    <link rel="stylesheet" href="client/css/common.css">
+    <link rel="stylesheet" href="client/css/animate.css">
+    <link rel="stylesheet" href="client/css/master.css">
+    <link rel="stylesheet" href="client/css/main.css">
+</head>
+<body>
+    <!-- 顶部 (包括导航条和工具条)-->
+    {% block head %} {% include "./head.html" %} {% endblock %}
+    <!-- 顶部 -->
+
+    <!-- 预览区 -->
+    {% block preview %} {% include "./preview.html" %} {% endblock %}
+    <!-- 预览区 -->
+
+    <!-- 左边页面 -->
+    {% block left %} {% include "./left.html" %} {% endblock %}
+    <!-- 左边页面 -->
+
+    <!-- 内容 -->
+    {% block content %} {% endblock %}
+    <!-- 内容 -->
+
+
+    <!-- 右边页面 -->
+    {% block right %} {% include "./right.html" %} {% endblock %}
+    <!-- 右边页面 -->
+
+    <!-- 弹出图片选择框 -->
+    {% block dialog %} {% include "./dialog.html" %} {% endblock %}
+</body>
+{% block script %}
+    <script type="text/javascript">
+        {% if data %}
+            window.isEdit = true;
+
+            window.settingData = {
+                id: '{{data._id}}',
+                author: '{{data.author}}',
+                name: '{{data.name}}',
+                discript: '{{data.discript}}',
+                cover: '{{data.cover}}',
+                pointer: '{{data.pointer}}'
+            };
+
+            window.pageData = {
+                {% set i = 0%}
+                {% for page in data.pages %}
+                    {% set i = i+1 %}
+                    page{{ i }}: {
+                        pageId: 'page{{ i }}',
+                        stageId: 'page{{ i }}-stage',
+                        bgColor: '{{page.bgColor}}',
+                        bgImage: '{{page.burl}}'
+                    },
+                {% endfor %}
+            };
+
+            window.pageItemData = {
+                {% set i = 0 %}
+                {% for page in data.pages %}
+                    {% set i = i+1 %}
+                    {% set j= 0 %}
+                    {% for item in page.items %}
+                        {% set j = j+1 %}
+                        {% if item.text %}
+                            'page{{ i }}-stage-text-item{{j}}': {
+                                itemId: 'page{{ i }}-stage-text-item{{j}}',
+                                pageId: 'page{{ i }}',
+                                type: 'text',
+                                animate: '{{ item.animateClass }}',
+                                animateDuration: '{{ item.animateDuration/1000 }}',
+                                animateTimeOut: '{{ item.nextAnimateTime }}',
+                                fontSize: '{{ item.textStyle['font-size'] }}',
+                                color: '{{ item.textStyle.color }}',
+                                opacity: '{{ item.transparent }}',
+                                width: '{{ item.width }}',
+                                height: '{{ item.height }}',
+                                px: '{{ item.px }}',
+                                py: '{{ item.py }}',
+                                text: '{{ item.text }}'
+                            },
+                        {% else %}
+                            'page{{ i }}-stage-img-item{{j}}': {
+                                itemId: 'page{{ i }}-stage-img-item{{j}}',
+                                pageId: 'page{{ i }}',
+                                type: 'img',
+                                animate: '{{ item.animateClass }}',
+                                animateDuration: '{{ item.animateDuration/1000 }}',
+                                animateTimeOut: '{{ item.nextAnimateTime }}',
+                                opacity: '{{ item.transparent }}',
+                                imgUrl: '{{ item.imgUrl }}',
+                                width: '{{ item.width }}',
+                                height: '{{ item.height }}',
+                                px: '{{ item.px }}',
+                                py: '{{ item.py }}'
+                            },
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            }
+        {% endif %}
+    </script>
+    <script src="client/js/jquery-2.1.0.min.js"></script>
+    
+    <script type="text/javascript" src="client/js/ZResize.js"></script>
+    <script type="text/javascript" src="client/js/ZUpload.js"></script>
+    <script type="text/javascript" src="client/js/rTab.js"></script>
+    <script type="text/javascript" src="client/js/page.js"></script>
+    <script type="text/javascript" src="client/js/textItem.js"></script>
+    <script type="text/javascript" src="client/js/imageItem.js"></script>
+    <script type="text/javascript" src="client/js/changeTab.js"></script>
+    <!-- 拾色器 -->
+    <script src='client/lib/jscolor.js'></script>
+    {% if slug != null %}
+     <script src="client/js/{{slug}}.js"></script>
+    {% endif %}
+{% endblock %}
+</html>

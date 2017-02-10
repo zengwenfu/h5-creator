@@ -1,0 +1,104 @@
+/************************** common **************************/
+html, body {
+    position: relative;
+    overflow: hidden;
+}
+
+.page-box {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    background: no-repeat center center #FFFFFF;
+    background-size: 100% 100%;
+}
+
+.page-box.show{
+    visibility: visible;
+}
+
+.item{
+    position:absolute;
+    background-repeat: no-repeat;
+    opacity:0;
+    text-align: center;
+}
+
+.pre-item{
+    position:absolute;
+    bottom:rem(20);
+    left:50%;
+    opacity:0;
+}
+
+.item.show{opacity:1}
+.pre-item.show{opacity:1}
+
+.pre-wrap { 
+    width: rem(40); 
+    height: rem(40); 
+    position: absoulte;
+    left:50%;
+    margin-left:rem(-20); 
+    background:url(../images/pointer.png) no-repeat center center;
+    background-size:100% 100%;
+    -webkit-animation: start 3s infinite ease-in-out; 
+    -moz-animation: start 3s infinite ease-in-out; 
+    animation: start 3s infinite ease-in-out; 
+}
+
+.cover {
+    position: absolute;
+}
+
+.cover img {
+    width: 100%;
+    height: 100%;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+
+/************* item style ***********************/
+
+
+{% set i = 0 %}
+{% for page in pages %}
+    {% set i = i+1 %}
+    {% set j = 0 %}
+    #page{{i}} {
+        {% if page.burl %}
+            background-image: url({{page.burl}});
+        {% endif %}
+        background-color: {{page.bgColor}};
+    }
+    {% for item in page.items %}
+        {% set j = j+1 %}
+        .page{{i}}-item{{j}} {
+            width: rem({{item.width}});
+            height: rem({{item.height}});
+            left: rem({{item.px}});
+            top: rem({{item.py}});
+            {% for key, value in item.textStyle %}
+                {{key}}: {{value}};
+            {% endfor %}
+        }
+    {% endfor %}
+{% endfor %}
+
+
+/**************** animate class **************************/
+{% for cname, cvalue in animateClasses %}
+    .{{cname}} {
+        -webkit-animation: {{cvalue.ac}} {{cvalue.ad}}s ease 1 both;
+        -webkit-animation-play-state: initial;  
+        animation: {{cvalue.ac}} {{cvalue.ad}}s ease 1 both;
+        animation-play-state: initial;
+        opacity: {% if cvalue.isOut %}0 {% else %} 1 {% endif %};
+    }
+{% endfor %}

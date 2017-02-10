@@ -1,0 +1,725 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    padding: 48px 0 0;
+    background-color: rgb(40, 40, 40);
+    box-shadow: 0px 3px 15px 0px rgba(0, 0, 0, 0.05);
+    font-family: 微软雅黑, 'microsoft yahei', 宋体, 新宋体, sans-serif;
+    font-size: 0;
+    color: #fff;
+    overflow: auto;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+}
+
+.btn {
+    display: inline-block;
+    width: 45px;
+    height: 25px;
+    line-height: 25px;
+    background: rgba(255, 255, 255, .2);
+    text-align: center;
+    border-radius: 3px;
+    margin: 0 6px;
+    font-size: 12px;
+    color: #fff;
+    overflow: hidden;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.btn:hover {
+    background-color: #fff;
+    color: rgb(51, 51, 51);
+    box-shadow: 0px 9px 21px 0px rgba(0, 0, 0, 0.35);
+}
+
+
+/* 首页顶部start */
+
+.header {
+    width: 100%;
+    min-width: 1024px;
+    height: 48px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+    background-color: rgb(51, 51, 51);
+    box-shadow: 0px 4px 38px 0px rgba(0, 0, 0, 0.32);
+}
+
+.header .title {
+    width: 300px;
+    font-size: 30px;
+    font-weight: normal;
+    letter-spacing: 3px;
+}
+
+.header .editor-tool {
+    width: calc(100% - 131px - 228px);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header .editor-tool li {
+    width: 73px;
+    height: 48px;
+    line-height: 48px;
+    margin: 0 16px 0 0;
+    font-size: 14px;
+    cursor: pointer;
+    position: relative;
+}
+
+.header .editor-tool li::before {
+    content: '';
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-right: 15px;
+    background: url(../images/bg-sprite.png) 0 -44px no-repeat/88px;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+
+.header .editor-tool .tool-text:hover::before {
+    background-position: -22px -44px;
+}
+
+.header .editor-tool .tool-img::before {
+    width: 17px;
+    height: 17px;
+    background-position: -44px -42px;
+}
+
+.header .editor-tool .tool-img:hover::before {
+    background-position: -66px -43px;
+}
+
+.header .user-btn {
+    height: 100%;
+    width: 228px;
+    display: flex;
+    align-items: center;
+}
+
+
+/* 首页顶部end */
+
+
+/* 左侧边栏start  滚动条好难看，以后再优化 */
+
+.aside-left {
+    width: 170px;
+    height: 100%;
+    display: inline-block;
+    font-size: 0;
+    color: #fff;
+    background-color: rgba(255, 255, 255, .1);
+    box-sizing: border-box;
+    overflow: auto;
+    vertical-align: top;
+    counter-reset: page;
+}
+
+.aside-left .title {
+    width: 100%;
+    height: 40px;
+    padding: 16px 0 0 10px;
+    font-size: 12px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.aside-left .title::after {
+    content: '';
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 13px;
+    right: 10px;
+    background: url(../images/bg-sprite.png) 0 -66px no-repeat/88px;
+}
+
+.aside-left .page-wrap {
+    width: 100%;
+    height: 170px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    border-top: 2px solid #333;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.aside-left .page-wrap .page {
+    width: 70px;
+    height: 110px;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+.aside-left .page-wrap .page::before,
+.aside-left .page-wrap .page::after {
+    display: block;
+    position: absolute;
+}
+
+.aside-left .page-wrap .page::before {
+    content: '';
+    border-bottom: 30px solid transparent;
+    border-left: 30px solid #b84e2e;
+    top: 0;
+    left: 0;
+}
+
+.aside-left .page-wrap .page::after {
+    counter-increment: page;
+    content: counter(page);
+    top: 3px;
+    left: 4px;
+}
+
+.aside-left .page-sel {
+    background-color: rgba(255, 255, 255, .1);
+}
+
+.aside-left .page-sel .page,
+.aside-left .page-wrap:hover .page {
+    margin-left: 40px;
+}
+
+.aside-left .page-wrap .page-handle {
+    width: 15px;
+    display: none;
+    position: absolute;
+    left: 120px;
+    bottom: 25px;
+    overflow: hidden;
+}
+
+.aside-left .page-wrap .page-handle li {
+    width: 12px;
+    height: 12px;
+    margin: 0 auto 9px;
+    cursor: pointer;
+    background: url(../images/bg-sprite.png) -44px -66px no-repeat/88px;
+}
+
+.aside-left .page-wrap .page-handle .add:hover {
+    background-position: -66px -66px;
+}
+
+.aside-left .page-wrap .page-handle .copy {
+    background-position: 0 -88px;
+}
+
+.aside-left .page-wrap .page-handle .copy:hover {
+    background-position: -22px -88px;
+}
+
+.aside-left .page-wrap .page-handle .delete {
+    background-position: -44px -88px;
+}
+
+.aside-left .page-wrap .page-handle .delete:hover {
+    background-position: -66px -88px;
+}
+
+.aside-left .page-wrap:hover .page-handle {
+    display: block;
+}
+
+
+/* 左侧边栏end */
+
+
+/* 右侧边栏start */
+
+.aside-right {
+    width: 270px;
+    height: 100%;
+    display: inline-block;
+    font-size: 12px;
+    vertical-align: top;
+    border-left: 1px solid rgba(0, 0, 0, .1);
+    background-color: rgba(255, 255, 255, .1);
+    overflow: auto;
+    box-sizing: border-box;
+}
+
+.aside-right .attr-wrap {
+    width: 100%;
+    height: 100%;
+}
+
+.aside-right .form-line {
+    margin: 0 0 17px;
+    padding: 0 0 0 20px;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.aside-right .form-line .lb {
+    display: inline-block;
+    width: 40px;
+    margin-right: 5px;
+}
+
+.aside-right .form-line .pl-lb {
+    padding-left: 8px;
+    box-sizing: border-box;
+}
+
+.aside-right .form-line .attr-input {
+    width: 60px;
+    height: 22px;
+    line-height: 22px;
+    margin-right: 5px;
+    padding: 0 5px;
+    font-size: 10px;
+    color: #fff;
+    border-radius: 4px;
+    border: 1px solid rgb(221, 221, 221);
+    box-sizing: border-box;
+}
+
+.aside-right .attr-wrap .bg-h {
+    width: 100%;
+    height: 41px;
+    line-height: 40px;
+    padding-left: 20px;
+    font-size: 12px;
+    font-weight: normal;
+    border-bottom: 2px solid #333;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.aside-right .attr-wrap .bg-h::after {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    background: url(../images/bg-sprite.png) 0 -110px no-repeat/88px;
+}
+
+.aside-right .bg-col-setting {
+    width: 100%;
+    height: 50px;
+    line-height: 49px;
+    margin: 0;
+    border-bottom: 2px solid #333;
+    box-sizing: border-box;
+}
+
+.aside-right .bg-col-setting .lb {
+    margin-right: 25px;
+}
+
+.aside-right .form-line .show-col {
+    margin-left: 19px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.aside-right .img-t{
+    padding: 14px 20px 12px;
+    font-size: 12px;
+    font-weight: normal;
+    box-sizing: border-box;
+}
+
+.bootstrap-frm .img-sel,
+.aside-right .img-sel {
+    width: 136px;
+    height: 136px;
+    margin: 0 auto 20px;
+    text-align: center;
+    border: 2px dashed rgba(255, 255, 255, .8);
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+}
+.bootstrap-frm .img-sel{
+    margin:0 0 20px;
+    border-color:#ccc;
+}
+
+.aside-right .img-sel:hover {
+    background-color: rgba(255, 255, 255, .1);
+    border: 1px solid rgba(255, 255, 255, .8);
+}
+.bootstrap-frm .img-sel:hover{
+    background-color:rgba(200,200,200,.1);
+    border:1px solid #ccc;
+}
+
+.aside-right .img-sel .add {
+    width: 38px;
+    height: 38px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin: -19px 0 0 -19px;
+    background: url(../images/bg-sprite.png) 0 0 no-repeat/88px;
+}
+
+.bootstrap-frm .img-sel .size-tip,
+.aside-right .img-sel .size-tip {
+    position: relative;
+    top: 50%;
+    margin-top: 30px;
+    opacity: 0;
+    transition: all .2s;
+    z-index: 100;
+}
+
+.bootstrap-frm .img-sel:hover .size-tip,
+.aside-right .img-sel:hover .size-tip {
+    margin-top: 15px;
+    opacity: 1;
+}
+
+.aside-right .btn-wrap {
+    width: 136px;
+    margin: 10px auto;
+}
+
+.aside-right .btn {
+    margin: 0;
+    line-height: 23px;
+    background-color: transparent;
+    border: 1px solid #fff;
+}
+
+.aside-right .btn:hover {
+    background-color: #fff;
+}
+
+.aside-right .btn-wrap .img-change {
+    width: 68px;
+    margin-right: 19px;
+}
+
+.aside-right .attr-h {
+    width: 100%;
+    height: 40px;
+    line-height: 39px;
+    font-size: 0;
+    text-align: center;
+    border-bottom: 1px solid rgb(51, 51, 51);
+    box-sizing: border-box;
+}
+
+.aside-right .attr-h h1 {
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+    font-size: 12px;
+    font-weight: normal;
+    cursor: pointer;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.aside-right .attr-h .sel::after {
+    content: '';
+    width: 100%;
+    border: 1px solid #fff;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.aside-right .page-animate {
+    margin: 20px 0;
+    border-top: 1px solid rgb(51, 51, 51);
+}
+
+.aside-right .text-tab,
+.aside-right .image-tab {
+    padding: 10px 0 20px;
+    box-sizing: border-box;
+}
+
+.aside-right .text-attr-delete {
+    display: block;
+    width: 128px;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 auto;
+    color: rgb(51, 51, 51);
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 9px 21px 0px rgba(0, 0, 0, 0.35);
+}
+
+.aside-right .animation-type {
+    width: 230px;
+    height: 23px;
+    line-height: 21px;
+    display: block;
+    margin: 0 auto 10px;
+    color: rgb(153, 153, 153);
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid rgb(221, 221, 221);
+    box-sizing: border-box;
+}
+
+.aside-right .upload-img-t {
+    border: none;
+}
+
+.aside-right .attr-wrap {
+    display: none;
+}
+
+.aside-right .attr-wrap.active {
+    display: block;
+}
+
+
+/* 右侧边栏end */
+
+
+/* 弹窗start */
+
+.dialog {
+    width: 334px;
+    height: 166px;
+    position: fixed;
+    top: calc(50% - 150px);
+    left: calc(50% - 215px);
+    color: rgb(51, 51, 51);
+    font-size: 14px;
+    border-radius: 3px;
+    background-color: rgb(247, 247, 247);
+    box-shadow: 0px 12px 70px 0px rgba(0, 0, 0, 0.35);
+    z-index: 100;
+    display: none;
+}
+
+.dialog .d-content {
+    width: 100%;
+    height: 118px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dialog-btn-wrap {
+    width: 100%;
+    height: 48px;
+    font-size: 0;
+    border-top: 1px solid rgb(221, 221, 221);
+    box-sizing: border-box;
+}
+
+.dialog-btn-wrap .d-btn {
+    display: inline-block;
+    width: 50%;
+    height: 47px;
+    line-height: 47px;
+    text-align: center;
+    font-size: 14px;
+    color: rgb(51, 51, 51);
+    border: none;
+    box-sizing: border-box;
+}
+
+.dialog-btn-wrap .d-btn:hover {
+    cursor: pointer;
+    background-color: rgb(255, 255, 255);
+}
+
+.dialog-btn-wrap .delete {
+    border-right: 1px solid rgb(221, 221, 221);
+}
+
+
+/* 弹窗end */
+
+
+/* 创建页面的信息弹窗start */
+
+.page-info-dialog-mask {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.bootstrap-frm {
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%,-50%);
+    width: 500px;
+    background: #FFF;
+    padding: 20px 30px 20px 30px;
+    font: 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #888;
+    text-shadow: 1px 1px 1px #FFF;
+    border: 1px solid #DDD;
+    border-radius: 5px;
+    overflow: hidden;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+.form-content{
+    border-bottom: 1px solid #ccc;
+    display: none;
+    height: 410px;
+}
+
+.form-content .icon-wrap {
+    float: left;
+}
+
+.form-content .icon-stage {
+    width: 360px;
+    height: 270px;
+    background: #e6e6e6;
+    text-align: center;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+    padding-top: 35px;
+}
+
+.form-content .icon-handlers {
+    width: 360px;
+    margin-top: 10px;
+}
+
+.form-content .icon-handler {
+    width: 24px;
+    height: 24px;
+    float: left;
+}
+
+.bootstrap-frm h1 {
+    width: 48%;
+    text-align: center;
+    font: 25px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    display: inline-block;
+    border-bottom: 1px solid #DADADA;
+    border-right: 1px solid #ccc;
+    margin: -10px 0px 30px 0px;
+    box-sizing: border-box;
+    color: #888;
+}
+.bootstrap-frm .tab1{
+    margin-left: 10px;
+}
+.bootstrap-frm .tab2{
+    border-right: 0;
+    margin-left: -5px;
+}
+
+.bootstrap-frm h1>span {
+    display: block;
+    font-size: 11px;
+}
+
+.bootstrap-frm label {
+    display: block;
+    margin: 0px 0px 5px;
+    clear: both;
+}
+
+.bootstrap-frm label>span {
+    float: left;
+    width: 20%;
+    text-align: right;
+    padding-right: 10px;
+    margin-top: 10px;
+    color: #333;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+}
+
+.bootstrap-frm input[type="text"],
+.bootstrap-frm input[type="email"],
+.bootstrap-frm textarea,
+.bootstrap-frm select {
+    border: 1px solid #CCC;
+    color: #888;
+    height: 20px;
+    line-height: 15px;
+    margin-bottom: 16px;
+    margin-right: 6px;
+    margin-top: 2px;
+    outline: 0 none;
+    padding: 5px 0px 5px 5px;
+    width: 70%;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.bootstrap-frm textarea {
+    height: 100px;
+    padding: 5px 0px 0px 5px;
+    width: 70%;
+}
+
+.bootstrap-frm .img-sel .add{
+    width: 34px;
+    height: 34px;
+    line-height: 21px;
+    font-size: 60px;
+    font-weight: 100;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.bootstrap-frm .button {
+    background: #FFF;
+    border: 1px solid #CCC;
+    margin-right:20px;
+    padding: 10px 25px 10px 25px;
+    color: #333;
+    border-radius: 4px;
+}
+
+.bootstrap-frm .button:hover {
+    color: #333;
+    background-color: #EBEBEB;
+    border-color: #ADADAD;
+}
+.bootstrap-frm label.bottom-btn{
+    text-align: center;
+    margin-top:10px;
+}
+.bootstrap-frm label.bottom-btn #sure{
+    margin:0 100px 0 -115px;
+    background-color: rgb(85, 119, 221);
+    color: #fff;
+    border: 1px solid rgb(85,119,221);
+}
+
+/* 创建页面的信息弹窗end */

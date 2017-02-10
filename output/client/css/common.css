@@ -1,0 +1,393 @@
+@charset 'utf-8';
+body,
+div,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+textarea,
+p,
+button,
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /*padding: 10px;*/
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    font-family: 'Helvetica Neue', Helvetica, STHeiti, sans-serif;
+    overflow-x: hidden;
+    /* 关闭字体自动调整大小 */
+    -webkit-text-size-adjust: none;
+    /* 滚动顺畅 */
+    -webkit-overflow-scrolling: touch;
+    /* 主颜色 */
+    color: #666;
+}
+
+html,
+body,
+.top-menu {
+    min-width: 1024px;
+}
+
+a {
+    text-decoration: none;
+    display: inline-block;
+}
+li{
+    list-style: none;
+}
+fieldset,
+img {
+    border: none;
+}
+
+input {
+    outline: none;
+    border-radius: 0;
+    background-color: inherit;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+a,
+img {
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.user-select {
+    -khtml-user-select: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.clear,
+.clearfix {
+    clear: both;
+}
+
+.textover {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: box;
+    display: -webkit-box;
+}
+
+.border-box {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+i {
+    font-style: normal;
+}
+
+.hidden {
+    display: none;
+    visibility: hidden;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.error {
+    color: red;
+}
+.ol-n{
+    outline:none;
+}
+
+
+/* 字体图标 */
+@font-face {
+  font-family: 'iconfont';
+  src: url('//at.alicdn.com/t/font_1476868658_6071148.eot'); /* IE9*/
+  src: url('//at.alicdn.com/t/font_1476868658_6071148.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//at.alicdn.com/t/font_1476868658_6071148.woff') format('woff'), /* chrome、firefox */
+  url('//at.alicdn.com/t/font_1476868658_6071148.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('//at.alicdn.com/t/font_1476868658_6071148.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.icon {
+    font-family: 'iconfont' !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-ref:before {
+    content: '\e605';
+}
+
+.icon-error:before {
+    content: '\e601';
+}
+
+.icon-add:before {
+    content: '\e609';
+}
+
+.icon-delete:before {
+    content: '\e608';
+}
+
+.icon-edit:before {
+    content: '\e60a';
+}
+
+.icon-share:before {
+    content: '\e604';
+}
+
+.icon-search:before {
+    content: '\e605';
+}
+
+.icon-down:before {
+    content: '\e600';
+}
+
+.icon-list:before {
+    content: '\e60d';
+}
+
+.icon-activi:before {
+    content: '\e60c';
+}
+
+.icon-page:before {
+    content: '\e603';
+}
+
+.icon-btn:before {
+    content: '\e60b';
+}
+.icon-back:before {
+    content: '\e60e';
+}
+
+
+
+/* 字体图标 */
+
+.myinput-lg {
+    width: 300px;
+}
+
+
+/* 导航 */
+
+.top-menu {
+    height: 52px;
+    line-height: 50px;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #222;
+}
+
+.top-menu a {
+    color: #fff;
+}
+
+.top-menu h1 {
+    float: left;
+    line-height: 50px;
+    text-indent: 1rem;
+    font-size: 24px;
+}
+
+.top-menu .menu-search {
+    float: right;
+    width: 200px;
+    margin-right: 1rem;
+    margin-top: 10px;
+}
+
+.top-menu .menu-links {
+    float: right;
+    height: 52px;
+    line-height: 50px;
+    margin-right: 1rem;
+}
+
+.top-menu .menu-links a {
+    padding: 0 10px;
+}
+
+
+/* 导航 */
+
+
+/* 主体 */
+
+.main,
+.buttons {
+    padding: 0 10px;
+}
+
+.main {
+    margin-top: 15px;
+}
+
+.buttons {
+    margin-top: 30px;
+}
+
+.main .col-sm-2,
+.edit-main .col-sm-2 {
+    white-space: nowrap;
+}
+
+.buttons .list-search {
+    float: right;
+    width: 200px;
+}
+
+
+/* 主体 */
+
+
+/* index */
+
+.index th {
+    text-align: center;
+}
+
+
+/*.index tbody tr:nth-child(2n-1) {
+    background-color: #dff0d8;
+    background-color: #fcf8e3;
+}*/
+
+.index >nav {
+    text-align: center;
+}
+
+.index td {
+    text-align: center;
+}
+
+.index .td-name {
+    width: 200px;
+}
+
+.index .td-ope {
+    width: 140px;
+}
+
+
+/*.index .td-ope a {
+    color: blue;
+}*/
+
+
+/* index */
+
+
+/* forms-add */
+
+.forms-add {
+    margin: 0 auto;
+    margin-top: 50px;
+    width: 700px;
+}
+
+
+/* forms-add */
+
+
+/* forms-edit */
+
+.forms-edit {
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.forms-edit .edit-left {
+    float: left;
+    width: 240px;
+}
+
+.forms-edit ul.edit-menu {
+    padding: 10px;
+    line-height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    list-style: none;
+    min-height: 400px;
+}
+
+.forms-edit .edit-menu li > a,
+.forms-edit .edit-menu li > span.icon {
+    cursor: pointer;
+    vertical-align: middle;
+    text-decoration: none;
+}
+
+.forms-edit .edit-right {
+    padding-left: 260px;
+}
+
+.forms-edit .edit-main {
+    position: relative;
+    float: left;
+    width: 100%;
+    padding: 50px 40px 20px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.forms-edit .edit-aname {
+    margin-top: 1em;
+    font-size: 1.08em;
+    /*color: #d43f3a;*/
+}
+
+.forms-edit .edit-apage {
+    /*color: #eea236;*/
+    font-size: .94em;
+    text-indent: 1.5em;
+}
+
+.forms-edit .edit-abtn {
+    font-size: .88em;
+    text-indent: 3em;
+}
+
+.forms-add .icon,
+.forms-edit .edit-main .icon {
+    color: #eea236;
+}
+
+
+/* forms-edit */

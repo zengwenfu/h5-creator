@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="description" content="亿账通">
+    <!-- 优先使用 IE 最新版本和 Chrome -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <!-- 为移动设备添加 viewport -->
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <!-- 添加到主屏后的标题（iOS 6 新增） -->
+    <meta name="apple-mobile-web-app-title" content="亿账通">
+    <!-- 是否启用 WebApp 全屏模式，删除苹果默认的工具栏和菜单栏 -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- 设置苹果工具栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <!-- Color the status bar on mobile devices -->
+    <meta name="theme-color" content="#2F3BA2">
+    <!--下面三个是清除缓存 微信浏览器缓存严重又无刷新；这个方法调试的时候很方便-->
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <!-- 新增loading的css -->
+    <link rel="stylesheet" type="text/css" href="css/loading.css">
+    <!-- 新增loading的css -->
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+    <script type="text/javascript">
+    (function() {
+        var ua = window.navigator.userAgent;
+        var docEl = document.documentElement;
+        var html = document.querySelector('html');
+        var isAndorid = /Android/i.test(ua);
+        var dpr = window.devicePixelRatio || 1;
+        var rem = docEl.clientWidth / 10;
+
+        // 设置 rem 基准值
+        html.style.fontSize = rem + 'px';
+
+        // Nexus 5 上 rem 值不准，
+        // 如：设置100px，getComputedStyle 中的值却为 85px，导致页面错乱
+        // 这时需要检查设置的值和计算后的值是否一样，
+        // 不一样的话重新设置正确的值
+        var getCPTStyle = window.getComputedStyle;
+        var fontSize = parseFloat(html.style.fontSize, 10);
+        var computedFontSize = parseFloat(getCPTStyle(html)['font-size'], 10);
+        if (getCPTStyle && Math.abs(fontSize - computedFontSize) >= 1) {
+            html.style.fontSize = fontSize * (fontSize / computedFontSize) + 'px';
+        }
+
+        // 设置 data-dpr 属性，留作的 css hack 之用
+        html.setAttribute('data-dpr', dpr);
+
+        // 安卓平台额外加上标记类
+        if (isAndorid) {
+            html.setAttribute('data-platform', 'android');
+        }
+    })();
+    </script>
+    <!-- loading -->
+    <div class="spinner">
+      <div class="spinner-container container1">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+      </div>
+      <div class="spinner-container container2">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+      </div>
+      <div class="spinner-container container3">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+      </div>
+    </div>
+    <!-- loading -->
+    <!-- page -->
+    {% set i = 0 %}
+    {% for page in pages %}
+        {% set i = i+1 %}
+        {% set j = 0 %}
+        <div class="page-box" id="page{{i}}">
+            {% for item in page.items %}
+                {% set j = j+1 %}
+                <div class="item page{{i}}-item{{j}}" data-cls="{{ item.animateClass }}{{item.animateDuration}}" {% if item.nextAnimateTime %} data-ts="{{ item.nextAnimateTime }}" {% else %} data-ts="500" {% endif %}  >
+                    {% if item.text %}
+                        {{ item.text }}
+                    {% endif %}
+                    {% if item.imgUrl %}
+                        <img src="{{ item.imgUrl }}">
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <div class="pre-item"><div class="pre-wrap"><div class="pre-box1"><div class="pre1"></div></div><div class="pre-box2"><div class="pre2"></div></div></div></div>
+        </div>  
+    {% endfor %}
+    <!-- page -->
+    <script type="text/javascript" src="js/zepto.js"></script>
+    <script type="text/javascript" src="js/touch.js"></script>
+    <script type="text/javascript" src="js/item.js"></script>
+    <script type="text/javascript" src="js/loading.js"></script>
+    <script type="text/javascript" src='js/slider.js'></script>
+    <script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>jQuery FormData文件上传</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style type="text/css">
+    .holder {
+        border: 10px dashed #ccc;
+        width: 300px;
+        min-height: 300px;
+        margin: 20px auto;
+    }
+    
+    .holder.hover {
+        border: 10px dashed #0c0;
+    }
+    
+    .holder img {
+        display: block;
+        margin: 10px auto;
+    }
+    
+    .holder p {
+        margin: 10px;
+        font-size: 14px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="holder" id='holder'></div>
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    // $('#upload').bind("click", function() {
+    //     $.ajax({
+    //         url: '/upload-file',
+    //         type: 'POST',
+    //         cache: false,
+    //         data: new FormData($('#uploadForm')[0]),
+    //         processData: false,
+    //         contentType: false
+    //     }).done(function(res) {
+    //         console.log(res);
+    //     }).fail(function(res) {
+    //         console.log(res);
+    //     });
+    // });
+
+    $(function() {
+        $(document).on({
+            dragleave: function(e) { //拖离 
+                e.preventDefault();
+            },
+            drop: function(e) { //拖后放 
+                e.preventDefault();
+            },
+            dragenter: function(e) { //拖进 
+                e.preventDefault();
+            },
+            dragover: function(e) { //拖来拖去 
+                e.preventDefault();
+            }
+        });
+        var box = document.getElementById('holder'); //拖拽区域 
+        box.addEventListener("drop", function(e) {
+            e.preventDefault(); //取消默认浏览器拖拽效果 
+            var fileList = e.dataTransfer.files; //获取文件对象 
+            //检测是否是拖拽文件到页面的操作 
+            if (fileList.length == 0) {
+                return false;
+            }
+            //检测文件是不是图片 
+            if (fileList[0].type.indexOf('image') === -1) {
+                alert("您拖的不是图片！");
+                return false;
+            }
+
+            //拖拉图片到浏览器，可以实现预览功能 
+            var reader = new FileReader();
+            reader.onload = function (event) {
+              var image = new Image();
+              image.src = event.target.result;
+              image.width = 250; // a fake resize
+              holder.appendChild(image);
+            };
+
+            reader.readAsDataURL(fileList[0]);
+
+            //上传 
+            xhr = new XMLHttpRequest();
+            xhr.open("post", "upload-file", true);
+            xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+            xhr.onload = function(res) {
+                console.log(res);
+            };
+            var fd = new FormData();
+            fd.append('file', fileList[0]);
+
+            xhr.send(fd);
+        }, false);
+    });
+    </script>
+</body>
+
+</html>

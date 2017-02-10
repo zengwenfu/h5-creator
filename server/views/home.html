@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="zh-cn">
+
+<head>
+    {% block meta %} {% include "./_inc/meta.html" %} {% endblock %}
+    <title>{% block title %}菲麦前端{{title}}{% endblock %}</title>
+    <link rel="stylesheet" href="client/css/common.css">
+    <link rel="stylesheet" href="client/css/home.css">
+</head>
+
+<body class="home">
+    <header class="header">
+        <div class="header-wrap">
+            <a href="http://120.52.138.232/showcase" class="logo"></a>
+            <h1 class="title">在线h5生成工具</h1>
+            <div class="login-wrap">
+      <!--           <a href="http://120.52.138.232/showcase" class="btn">showCase</a> -->
+            </div>
+        </div>
+    </header>
+    <section class="content">
+        <div class="h-line">
+            <div class="h-icon">
+                <div class="icon"></div>
+            </div>
+        </div>
+        <h1 class="c-title">案例展示</h1>
+        <div class="content-line">
+            {% for item in data %}
+            <section class="c-each" data-href="show-h5.html?src={{item.viewpath}}">
+                <img src="{{item.cover}}" alt="" class="img">
+                <div class="info">
+                    <h1 class="h1">{{item.name}}</h1>
+                    <div class="author">作者：{{item.author}}</div>
+                    <p class="desc">{{item.discript}}</p>
+                    <div class="btn-wrap">
+                        <a href="javascript:void(0);" data-href="edit?id={{item._id}}" class="btn edit" title="编辑"></a>
+                        <a href="javascript:void(0);" class="btn delete" title="删除" data-id='{{item._id}}'></a>
+                    </div>
+                </div>
+                <div class="mark">
+                    <img src="http://qr.liantu.com/api.php?text={{domain}}/{{item.viewpath}}" alt="" class="mark-img">
+                    <a href="javascript:void(0);" class="view">view</a>
+                </div>
+            </section>
+            {% endfor %}
+            <a href="add" class="c-each new" title="新建">
+                <div class="add"></div>
+            </a>
+            <!-- <section class="c-each">
+                <img src="client/images/default.png" alt="" class="img">
+                <div class="mark">
+                    <img src="client/images/erweima.png" alt="" class="mark-img">
+                    <a href="javascript:void(0)" class="view">view</a>
+                </div>
+                <h1 class="h1">一元秒杀</h1>
+                <div class="author">作者：author</div>
+                <p class="desc">这是案例说明这是案例说明这是案例说明这是案例说明这是案例说明这是案例说明这是案例说明这是案例说明</p>
+                <div class="btn-wrap">
+                    <a href="javascript:void(0);" class="btn edit" title="编辑"></a>
+                    <a href="javascript:void(0);" class="btn delete" title="删除"></a>
+                </div>
+            </section>
+            <section class="c-each">
+                <img src="client/images/default.png" alt="" class="img">
+                <div class="mark">
+                    <img src="client/images/erweima.png" alt="" class="mark-img">
+                    <a href="javascript:void(0)" class="view">view</a>
+                </div>
+                <h1 class="h1">一元秒杀</h1>
+                <div class="author">作者：author</div>
+                <p class="desc">这是案例说明这是案例说明这是案例说明这是案例说明这是案例说明这是案例说明这是案例说明这是案例说明</p>
+                <div class="btn-wrap">
+                    <a href="javascript:void(0);" class="btn edit" title="编辑"></a>
+                    <a href="javascript:void(0);" class="btn delete" title="删除"></a>
+                </div>
+            </section>
+            <section class="c-each">
+                <img src="client/images/default.png" alt="" class="img">
+                <div class="mark">
+                    <img src="client/images/erweima.png" alt="" class="mark-img">
+                    <a href="javascript:void(0)" class="view">view</a>
+                </div>
+                <h1 class="h1">一元秒杀</h1>
+                <div class="author">作者：author</div>
+                <p class="desc">这是案例说明这是案例说明这是案例说明这是案例说明这是案例说明这是案例说明这是案例说明这是案例说明</p>
+                <div class="btn-wrap">
+                    <a href="javascript:void(0);" class="btn edit" title="编辑"></a>
+                    <a href="javascript:void(0);" class="btn delete" title="删除"></a>
+                </div>
+            </section>
+            <section class="c-each">
+                <img src="client/images/default.png" alt="" class="img">
+                <div class="mark">
+                    <img src="client/images/erweima.png" alt="" class="mark-img">
+                    <a href="javascript:void(0)" class="view">view</a>
+                </div>
+                <h1 class="h1">一元秒杀</h1>
+                <div class="author">作者：author</div>
+                <p class="desc">这是案例说明这是案例说明这是案例说明这是案例说明这是案例说明这是案例说明这是案例说明这是案例说明</p>
+                <div class="btn-wrap">
+                    <a href="javascript:void(0);" class="btn edit" title="编辑"></a>
+                    <a href="javascript:void(0);" class="btn delete" title="删除"></a>
+                </div>
+            </section>
+            <section class="c-each">
+                <img src="client/images/default.png" alt="" class="img">
+                <div class="mark">
+                    <img src="client/images/erweima.png" alt="" class="mark-img">
+                    <a href="javascript:void(0)" class="view">view</a>
+                </div>
+                <h1 class="h1">一元秒杀</h1>
+                <div class="author">作者：author</div>
+                <p class="desc">这是案例说明这是案例说明这是案例说明这是案例说明这是案例说明这是案例说明这是案例说明这是案例说明</p>
+                <div class="btn-wrap">
+                    <a href="javascript:void(0);" class="btn edit" title="编辑"></a>
+                    <a href="javascript:void(0);" class="btn delete" title="删除"></a>
+                </div>
+            </section>
+            <section class="c-each">
+                <img src="client/images/default.png" alt="" class="img">
+                <div class="mark">
+                    <img src="client/images/erweima.png" alt="" class="mark-img">
+                    <a href="javascript:void(0)" class="view">view</a>
+                </div>
+                <h1 class="h1">一元秒杀</h1>
+                <div class="author">作者：author</div>
+                <p class="desc">这是案例说明这是案例说明这是案例说明这是案例说明这是案例说明这是案例说明这是案例说明这是案例说明</p>
+                <div class="btn-wrap">
+                    <a href="javascript:void(0);" class="btn edit" title="编辑"></a>
+                    <a href="javascript:void(0);" class="btn delete" title="删除"></a>
+                </div>
+            </section>
+            <section class="c-each">
+                <img src="client/images/default.png" alt="" class="img">
+                <div class="mark">
+                    <img src="client/images/erweima.png" alt="" class="mark-img">
+                    <a href="javascript:void(0)" class="view">view</a>
+                </div>
+                <h1 class="h1">一元秒杀</h1>
+                <div class="author">作者：author</div>
+                <p class="desc">这是案例说明这是案例说明这是案例说明这是案例说明这是案例说明这是案例说明这是案例说明这是案例说明</p>
+                <div class="btn-wrap">
+                    <a href="javascript:void(0);" class="btn edit" title="编辑"></a>
+                    <a href="javascript:void(0);" class="btn delete" title="删除"></a>
+                </div>
+            </section>
+            <section class="c-each">
+                <img src="client/images/default.png" alt="" class="img">
+                <div class="mark">
+                    <img src="client/images/erweima.png" alt="" class="mark-img">
+                    <a href="javascript:void(0)" class="view">view</a>
+                </div>
+                <h1 class="h1">一元秒杀</h1>
+                <div class="author">作者：author</div>
+                <p class="desc">这是案例说明这是案例说明这是案例说明这是案例说明这是案例说明这是案例说明这是案例说明这是案例说明</p>
+                <div class="btn-wrap">
+                    <a href="javascript:void(0);" class="btn edit" title="编辑"></a>
+                    <a href="javascript:void(0);" class="btn delete" title="删除"></a>
+                </div>
+            </section> -->
+        </div>
+    </section>
+</body>
+{% block script %}
+<script src="client/js/jquery-2.1.0.min.js"></script>
+{% if slug != null %}
+<script src="client/js/{{slug}}.js"></script>
+{% endif %} {% endblock %}
+
+</html>

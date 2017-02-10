@@ -1,0 +1,75 @@
+<section class="dialog">
+    <div class="d-content">该页面的所有元素也会被删除，确定删除？</div>
+    <div class="dialog-btn-wrap">
+        <a href="#" class="d-btn delete">取消</a>
+        <a href="#" class="d-btn">确定</a>
+    </div>
+</section>
+<!-- 用户填写相关信息 -->
+<section class="page-info-dialog-mask" id="pageInfoDialog" style="display: none">
+    <form action="" method="post" class="bootstrap-frm">
+        <h1 class="tab1">常规</h1>
+        <h1 class="tab2">高级</h1>
+      <div class="form-content form-content1">
+        <label>
+            <span>创建人 :</span>
+            <input id="author" type="text" name="name" placeholder="Your Full Name" />
+        </label>
+        <label>
+            <span>标题 :</span>
+            <input id="projectName" type="text" name="title" placeholder="your Project's Title" />
+        </label>
+        <label>
+            <span>描述 :</span>
+            <textarea id="projectDiscript" name="desc" placeholder="Description of Your Project"></textarea>
+        </label>
+        <label>
+            <span>封面 :</span>
+            <div class="img-sel" id='uploadCover'>
+                <div class="add">+</div>
+                <div class="size-tip">
+                    <div>拖拽图片到此处上传</div>
+                    <div>（最佳尺寸:750×1206）</div>
+                </div>
+                <div class="img-selected"></div>
+            </div>        
+        </label>
+        </div>
+        <div class="form-content form-content2">
+            <label>
+              <span>背景音乐 :</span>
+              <input id="audio" type="text" name="audio" placeholder="" />
+            </label>
+            <label>
+              <span>箭头选择 :</span>
+              <div class="icon-wrap">
+                <div class="icon-stage">
+                  <img src="client/images/pointer/{% if data %}{{data.pointer}}{% else %}15.png{% endif %}" id='pointerImg'/>
+                </div>
+                <div class="icon-handlers">
+                    <div class="icon-handler" style="background: #d81e06"></div>
+                    <div class="icon-handler" style="background: #f4ea2a"></div>
+                    <div class="icon-handler" style="background: #1afa29"></div>
+                    <div class="icon-handler" style="background: #1296db"></div>
+                    <div class="icon-handler" style="background: #13227a"></div>
+                    <div class="icon-handler" style="background: #d4237a"></div>
+                    <div class="icon-handler" style="background: #ffffff"></div>
+                    <div class="icon-handler" style="background: #e6e6e6"></div>
+                    <div class="icon-handler" style="background: #dbdbdb"></div>
+                    <div class="icon-handler" style="background: #cdcdcd"></div>
+                    <div class="icon-handler" style="background: #bfbfbf"></div>
+                    <div class="icon-handler" style="background: #8a8a8a"></div>
+                    <div class="icon-handler" style="background: #707070"></div>
+                    <div class="icon-handler" style="background: #515151"></div>
+                    <div class="icon-handler" style="background: #2c2c2c"></div>
+                </div>
+             </div>
+            </label>
+        </div>
+        <label class="bottom-btn">
+            <span>&nbsp;</span>
+            <input type="button" class="button" value="确定" id='sure' />
+            <input type="button" class="button" value="取消" id='cancel'/>
+        </label>
+    </form>
+</section>

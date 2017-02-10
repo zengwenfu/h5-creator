@@ -1,0 +1,299 @@
+html,
+body{
+	min-width: auto;
+	width: 100%;
+}
+.home {
+    height: 100%;
+    padding: 47px 0 0;
+    overflow: auto;
+    box-sizing: border-box;
+}
+
+.header {
+    width: 100%;
+    margin: auto;
+    height: 47px;
+    line-height: 47px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #f8f8f8;
+    box-shadow: 0px 4px 38px 0px rgba(0, 0, 0, 0.32);
+    z-index: 10;
+    box-sizing: border-box;
+}
+
+.header-wrap {
+    max-width: 1280px;
+    padding:0 32px;
+    margin: auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    box-sizing:border-box;
+}
+
+.header .logo {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 25px;
+    background: url(../images/logo.png) left top no-repeat;
+    background-size: 100%;
+}
+
+.header .title {
+    color: #000000;
+    font-size: 30px;
+    font-weight: normal;
+    letter-spacing: 3px;
+    text-align: left;
+}
+
+.login-wrap {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+}
+
+.login-wrap .btn {
+    color: #fff;
+    font-size: 16px;
+}
+
+.login-wrap .btn:first-child::after {
+    /*content: '/';*/
+    position: relative;
+    right: -2px;
+    font-size: 20px;
+    vertical-align: top;
+}
+
+.content {
+    max-width: 1280px;
+    padding:0 32px;
+    height: 100%;
+    margin: 0 auto;
+    box-sizing:border-box;
+}
+
+
+.h-line {
+    margin: 60px auto 45px;
+    position: relative;
+    border-bottom: 1px solid rgb(221, 221, 221);
+}
+
+.h-icon {
+    width: 54px;
+    height: 29px;
+    position: absolute;
+    left: calc(50% - 27px);
+    top: -15px;
+    background-color: #f7f7f7;
+}
+
+.h-icon .icon {
+    width: 23px;
+    height: 100%;
+    margin: 0 auto;
+    background: url(../images/bg-sprite.png) no-repeat;
+    background-size: 88px;
+    background-position: -43px -154px;
+}
+
+.c-title {
+    margin: 0 auto 58px;
+    text-align:center;
+    font-size: 22px;
+    font-weight: normal;
+    color: rgb(51, 51, 51);
+    position: relative;
+}
+
+.c-title::after {
+    content: '';
+    display: block;
+    width: 30px;
+    position: absolute;
+    left: calc(50% - 15px);
+    top: 53px;
+    border: 1px solid rgb(248, 101, 64);
+}
+
+.content-line {
+    margin: 0 auto;
+    display:flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+.c-each {
+    background-color: #fff;
+    border-radius: 2px;
+    border-style: none;
+    box-shadow: rgba(0, 0, 0, .12) 0 1px 6px, rgba(0, 0, 0, .12) 0 1px 4px;
+    margin: 0 12px 24px;
+    width: 280px;
+    height: 340px;
+    overflow: hidden;
+    -webkit-transition: width .6s ease-in-out;
+    transition: width .6s ease-in-out;
+    cursor: pointer;
+    position: relative;
+    box-sizing:border-box;
+}
+
+/*为了与showcase平台统一样式*/
+
+@media screen and (max-width: 1280px) {
+    .header-wrap,
+    .content {
+        width: 976px;
+    }
+}
+
+@media screen and (max-width: 976px) {
+    .header-wrap,
+    .content {
+        width: 672px;
+    }
+}
+@media screen and (max-width: 672px) {
+    .header-wrap,
+    .content {
+        width: 100%;
+    }
+    .content-line{
+    	justify-content:center;
+    }
+}
+
+.content .new {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: top;
+}
+
+.content .new:hover {
+    cursor: pointer;
+    border: 2px dashed rgb(221, 221, 221);
+}
+
+.c-each .add {
+    width: 38px;
+    height: 38px;
+    background: url(../images/bg-sprite.png) no-repeat;
+    background-size: 88px;
+    background-position: 0 -154px;
+}
+
+.c-each .img {
+    width: 280px;
+    height: 230px;
+    display:block;
+    background-color: #ccc;
+}
+.c-each .info{
+    height:110px;
+    position:relative;
+    z-index:2;
+    padding:6px 0 0;
+    background-color:#fff;
+    box-sizing:border-box;
+}
+
+.c-each .mark {
+    width: 100%;
+    height: 230px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgba(0,0,0,.6);
+    transition: all .5s ease-in-out;
+    position:relative;
+    z-index:1;
+    transform:translateY(-110px);
+}
+.c-each:hover .mark{
+    transform:translateY(-340px);
+}
+
+.c-each .mark .mark-img {
+    width: 100px;
+    height: 100px;}
+
+.c-each .mark .view {
+    width: 96px;
+    height: 28px;
+    line-height: 26px;
+    margin-top: 20px;
+    color: #fc6537;
+    font-size: 14px;
+    text-align:center;
+    background-color: rgba(255,255,255,1);
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all .5s;
+}
+.c-each:hover .mark .view:hover {
+    background-color: rgba(255,255,255,0);
+    border-radius: 0;
+    border: 1.5px solid #fc6537;
+}
+
+.c-each .h1 {
+    margin: 0 auto 6px;
+    font-size: 14px;
+    color: rgb(51, 51, 51);
+    text-align: center;
+}
+
+.c-each .author {
+    padding: 0 10px;
+    font-size: 12px;
+    color: rgb(153, 153, 153);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.c-each .desc {
+    padding: 0 10px;
+    font-size: 13px;
+    margin: 6px 0;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+.c-each .btn-wrap {
+    position: absolute;
+    bottom: 9px;
+    right: 0;
+    text-align: right;
+}
+
+.c-each .btn-wrap .btn {
+    width: 18px;
+    height: 18px;
+    background: url(../images/bg-sprite.png) -44px -109px no-repeat/88px;
+}
+
+.c-each .btn-wrap .delete {
+    margin: 0 10px 0 15px;
+    background-position: 0 -132px;
+}
+
+.c-each .btn-wrap .edit:hover {
+    background-position: -66px -110px;
+}
+
+.c-each .btn-wrap .delete:hover {
+    background-position: -22px -132px;
+}

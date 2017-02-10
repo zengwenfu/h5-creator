@@ -1,0 +1,31 @@
+{% extends "./_inc/layout.html" %} {% block content %}
+<section class="content">
+    <div class="simulator-wrap" id='mainContent'>
+        {% if data %}
+            {% set i = 0 %}
+            {% for page in data.pages %}
+                {% set i = i+1 %}
+                <div class="simulator-box{% if i==1 %} active {% endif %}" id="page{{ i }}-stage" style="background-image: url({{page.burl}});background-color: {{page.bgColor}}">
+                    {% set j = 0 %}
+                    {% for item in page.items %}
+                        {% set j= j+1 %}
+                        {% if item.text %}
+                            <div id="page{{ i }}-stage-text-item{{j}}" class="create-text-box" title="编辑文本"  data-type="text" style="left: {{item.px}}px; top: {{item.py}}px;width: {{item.width}}px;height: {{item.height}}px;line-height: {{item.height}}px;opacity:{{item.transparent/100}};z-index: {{item.zIndex}};color:#{{item.textStyle.color}};font-size: {{item.textStyle['font-size']}};animation: {{item.animateClass}} {{item.animateDuration/1000}}s linear;">
+                                <p contentEditable="true" class="ol-n">
+                                    {{ item.text }}
+                                </p>
+                            </div>
+                        {% else %}
+                            <div class="create-img-box" id="page{{ i }}-stage-img-item{{j}}" style="left: {{item.px}}px; top: {{item.py}}px;width: {{item.width}}px;height: {{item.height}}px;opacity:{{item.transparent/100}};z-index: {{item.zIndex}};animation: {{item.animateClass}} {{item.animateDuration/1000}}s linear;">
+                                <img src="{{item.imgUrl}}" />
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        {% else %}
+             <div class="simulator-box active" id="page1-stage"> </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
