@@ -15,7 +15,7 @@ module.exports = function(app) {
         var form = new multiparty.Form({
             uploadDir: './output/upload',//文件保存路径
             // autoFiles: true,
-            // maxFilesSize: 100*1024 //最大限制上传100KB的图片
+            maxFilesSize: 100*1024 //最大限制上传100KB的图片
         });
 
         form.parse(req, function(err, fields, files) {
