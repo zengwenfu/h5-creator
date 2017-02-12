@@ -13,7 +13,7 @@
 设计思路和主要实现步骤都是正经而且值得借鉴的（有点不谦虚哈），但是由于赶时间的玩的心态作祟，具体的代码细节上就显得有点混乱尴尬了，主要体现在这几个方面：
 1. 项目结构随性
 2. 未使用打包工具对代码进行压缩合并以及其它预编译处理，违背现在前端工程化的潮流，webpack.config.js放那唬人，就当是方便场景代码生成后阅读吧
-3. 模板文件分割无序，分割动作简直就多此一举
+3. 可读性低，难以维护的模板代码
 4. 只兼容高版本的浏览器，建议在chrome上运行。由于自己很傲娇的使用formData来封装了图片上传插件，所以可以肯定的是，ie10以下的浏览器是肯定无法上传图片的
 5. 很多功能都没有完善，因为懒
 
@@ -61,7 +61,7 @@
     |-- server.js                    --------服务入口文件
     |-- webpack.config.js            --------未使用
 
-## 部分代码模块详解
+## 后台代码简读
 ### 一、核心渲染（build）
 在[从零打造在线版H5页面生成器](http://www.jianshu.com/p/00681bc68caf)中已经有详细介绍，关键在于实例模板化，以及数据结构的定义。
 
@@ -96,6 +96,97 @@
 ```
 
 ### nunjucks模板（views）
+1. _inc目录维护一些html片段，或共享，或减少单个模板文件的代码，增强可读性
+2. home.html项目列表，增删改查
+3. show-h5.html预览页面
+4. edit.html编辑页面（新增或修改，核心页面）
+
+> edit.html的模板代码异常复杂，后文会详诉
+
+## 前端js代码简读
+> 如果用一句话来概括这个工具，不过是将大量场景实例提升为模板，并将满足既定数据结构模型的数据实例与模板结合渲染生成h5场景代码的过程。这句话并未突出构造数据实例这一过程（似乎在[从零打造在线版H5页面生成器](http://www.jianshu.com/p/00681bc68caf)中也被一笔带过了），然而，实现的过程中，构造数据实例的过程，即用户在前端进行可视化编辑操作过程，不光是重中之中，而且也是难中之难。此次再不能避而不谈了
+
+### 一、拖拽、文件上传插件编写
+拖拽插件：[div拖拽缩放jquery插件编写——带8个控制点](http://www.jianshu.com/p/822afede7489)
+
+文件上传插件：使用formData新特性，低版本浏览器不兼容，只为方便并get新技能，详见ZUpload.js
+
+>第一反应是通过网络渠道寻找合适的插件，而不是费劲的重复造轮子，只是并未找到比较合适而且可以随意控制的。重复造轮子有时候也是指的拥有的
+
+### 二、入口(edit.js)
+读代码的第一要务就是找到代码的入口，edit.js是也~
+在“从零打造”中我们已经说过，要将负责的任务分解，所以入口edit.js的主要任务是协调调度各个模块
+```
+    //定义全局变量
+    this.pageController = false; //页面控制器
+    this.rTab = new RTab(); //右侧面板控制器
+    //对话框 因为用到rTab的方法所以放在后面
+    this.dueDialog();
+    /**
+     - 处理page
+     */
+    this.duePage();
+    /**
+     -  处理背景图片上传，必须在pageController之后
+     */
+    this.dueBgUpload();
+    /**
+     - 处理文本 必须在创建page之后
+     */
+    this.dueText();
+    /**
+     - 处理图片 必须在创建page之后
+     */
+    this.dueImage();
+    /**
+     - 处理预览
+     */
+    this.duePreview();
+    /**
+     - 处理头部按钮事件
+     */
+    this.dueHeadButton();
+    /**
+     - 处理头部按钮切换事件
+     */
+    this.changeTab();
+```
+
+### 三、右侧属性编辑面板控制(rTab.js)
+在上例入口代码可以看到，rTab对象在初始化的时候是最先建立的，因为页面控制器，以及图片文本编辑都需要依赖于它来构建，rTab复制哪些事情呢？
+1. 维护用户操作过程中产生的数据，并且在用户点击保存和预览的时候，可以随时构造符合后台要求的数据实例，用于构建输出结果
+```
+     //page数据
+     pageData = window.pageData || {};
+     //pageItem数据
+     pageItemData = window.pageItemData || {};
+
+     /**
+     +  生成后台需要的数据结构
+     */
+    buildData: function() {
+        var self = this;
+        var pages = [];
+        var pageItems = self.sortPageItems();
+        $('.page-wrap').each(function(index) {
+            var key = $(this).attr('id');
+            var pageObj = pageData[key];
+            var spb = pageObj.bgImage.split('/');
+            var burl = '../images/' + spb[spb.length -1];
+            var page = {
+                burl: burl,
+                bgColor: pageObj.bgColor,
+                items: pageItems[key] || []
+            };
+            pages.push(page);
+        });
+
+        return {
+            pages: pages
+        };
+    }
+```
+2. 
 
 
 

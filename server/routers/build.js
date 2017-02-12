@@ -87,8 +87,8 @@ module.exports = function(app) {
     app.get('/edit', function(req, res) {
         var id = req.param('id');
         actDao.findById(id, function(data) {
-            res.render('index.html', {
-                slug: 'index',
+            res.render('edit.html', {
+                slug: 'edit',
                 data: dueDataImage(data)
             });
         });
@@ -128,8 +128,8 @@ module.exports = function(app) {
      *  增加
      */
     app.get('/add', function(req, res) {
-        res.render('index.html', {
-            slug: 'index'
+        res.render('edit.html', {
+            slug: 'edit'
         });
     });
 
