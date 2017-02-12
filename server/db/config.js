@@ -7,7 +7,7 @@ var db = {
         'conn': 'mongodb://localhost/dragAnimate'
     },
     prd: {
-        'conn': 'mongodb://abd:abcde@127.0.0.1:27017/dragAnimate'
+        'conn': 'mongodb://localhost/dragAnimate'
     }
 };
 
