@@ -19,7 +19,7 @@ process.port = port;
 
 var host = {
     dev: 'http://localhost:3000',
-    prd: 'http://dweb.pinganh5.com'
+    prd: 'http://www.facemagic888.com'
 };
 
 process.host = host[env];
