@@ -79,10 +79,15 @@
                 contentType: false
             }).done(function(res) {
                 var obj = JSON.parse(res);
-                //预览
-                self.preview(obj.data.filePath);
-                //执行回调
-                self.options.success && self.options.success(obj);
+                if(obj.code === '000000') {
+                    //预览
+                    self.preview(obj.data.filePath);
+                    //执行回调
+                    self.options.success && self.options.success(obj);
+                } else {
+                    alert('图片最大只能上传100kb');
+                }
+                
             }).fail(function(res) {
                 //执行回调
                 self.options.error && self.options.error(success);
