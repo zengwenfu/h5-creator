@@ -13,7 +13,7 @@ env = env == null ? 'prd' : env;
 //连接数据库
 connect();
 
-var port = 80;
+var port = 3000;
 process.rootPath = __dirname;
 process.port = port;
 
