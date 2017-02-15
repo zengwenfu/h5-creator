@@ -174,6 +174,11 @@
             data._id = settingData.id;
             data.pointer = settingData.pointer;
 
+            if(data._id && data._id === '58a02fbba5e0731851b677a4') {
+                alert('默认项目，无法更改');
+                return;
+            }
+
             $.post('/save', {
                 config: JSON.stringify(data)
             }, function(data) {

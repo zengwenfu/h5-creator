@@ -4,6 +4,10 @@
         var target = $(event.target || window.event.target);
         if (target.hasClass('delete')) {
             var id = target.attr('data-id');
+            if(id==='58a02fbba5e0731851b677a4') {
+                alert('默认项目，无法删除！！！');
+                return;
+            }
             if (confirm('该页面的所有元素也会被删除，确定删除吗？')) {
                 $.get('delete', {
                     'id': id
