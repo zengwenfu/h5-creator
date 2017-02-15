@@ -120,7 +120,7 @@ module.exports = function(app) {
     /**
      *  主页
      */
-    app.get('/home', function(req, res) {
+    app.get('/index', function(req, res) {
         var domain = process.host;
         actDao.findList(function(data) {
             res.render('home.html', {
