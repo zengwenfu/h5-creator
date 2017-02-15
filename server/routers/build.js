@@ -61,6 +61,13 @@ module.exports = function(app) {
     app.post('/save', function(req, res) {
         //获取参数
         var data = JSON.parse(req.body.config);
+
+        //默认项目，无法更改
+        if(data._id && data._id === '58a02fbba5e0731851b677a4') {
+            res.send(parseRes.error('0000004', '默认项目，无法更改'));
+            return;
+        }
+
         //保存
         actDao.saveOrUpdate(data, function(result) {
             if (result.code !== 0) {
@@ -171,6 +178,10 @@ module.exports = function(app) {
      */
     app.get('/delete', function(req, res) {
         var id = req.param('id');
+        if(id==='58a02fbba5e0731851b677a4') {
+            res.send(parseRes.error('000003', '默认项目，无法删除'));
+            return;
+        }
         actDao.deleteById(id, function(data) {
             if(data.code != '000000') {
                 res.send(parseRes.error(data));
