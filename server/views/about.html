@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-cn">
+
+<head>
+    {% block meta %} {% include "./_inc/meta.html" %} {% endblock %}
+    <title>{% block title %}菲麦前端{{title}}{% endblock %}</title>
+    <link rel="stylesheet" href="client/css/common.css">
+    <link rel="stylesheet" href="client/css/home.css">
+</head>
+
+<body class="home">
+    <header class="header">
+        <div class="header-wrap">
+            <a href="/home" class="logo"></a>
+            <h1 class="title">在线h5生成工具</h1>
+        </div>
+    </header>
+    <section class="content">
+        <div class="h-line">
+            <div class="h-icon">
+                <div class="icon"></div>
+            </div>
+        </div>
+        <h1 class="c-title">关于菲麦</h1>
+        <div class="content-line">
+            <section class="c-each">
+                <img src="client/images/qrcode.jpg" alt="" class="about-img">
+                <div class="title">公众号</div>
+            </section>
+             <section class="c-each link">
+                <div class="first-div"><span class="label">qq群：</span>433948177</div>
+                <div><span class="label">简书专题：</span><a href="http://www.jianshu.com/c/4f96d8bcb372">传送门</a></div>
+                <div><span class="label">头条独家号：</span><a href="https://toutiao.io/subjects/205384">传送门</a></div>
+                <div><span class="label">github：</span><a href="https://github.com/zengwenfu">传送门</a></div>
+            </section>
+            <section class="c-each">
+                <img src="client/images/dasang.png" alt="" class="about-img">
+                <div class="title">打赏我（5元）</div>
+            </section>
+        </div>
+    </section>
+</body>
+{% block script %}
+<script src="client/js/jquery-2.1.0.min.js"></script>
+{% endblock %}
+
+</html>

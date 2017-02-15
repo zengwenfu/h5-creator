@@ -132,6 +132,15 @@ module.exports = function(app) {
     });
 
     /**
+     *  about
+     */
+    app.get('/about', function(req, res) {
+        res.render('about.html', {
+            slug: 'home'
+        });
+    });
+
+    /**
      *  增加
      */
     app.get('/add', function(req, res) {

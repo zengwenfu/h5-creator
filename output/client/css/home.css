@@ -54,13 +54,13 @@ body{
 .login-wrap {
     position: absolute;
     top: 0;
-    right: 0;
+    right: 25px;
     height: 100%;
 }
 
 .login-wrap .btn {
-    color: #000;
-    font-size: 16px;
+    color: #FFFFFF;
+    font-size: 20px;
 }
 
 .login-wrap .btn:first-child::after {
@@ -283,6 +283,47 @@ body{
     width: 18px;
     height: 18px;
     background: url(../images/bg-sprite.png) -44px -109px no-repeat/88px;
+}
+
+.c-each .title {
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    color: #244c76;
+}
+
+.c-each .about-img {
+    width: 280px;
+    height: 280px;
+}
+
+.c-each div {
+    display: block;
+    font-size: 18px;
+    clear: both;
+    height: 35px;
+}
+
+.c-each div span, .c-each div a {
+    display: block;
+    float: left;
+}
+
+.c-each div a {
+    color: blue;
+}
+
+.c-each div .label {
+    width: 125px;
+    text-align: right;
+}
+
+.c-each.link {
+    padding: 17px;
+}
+
+.c-each .first-div {
+    margin-top: 80px;
 }
 
 .c-each .btn-wrap .delete {
