@@ -29,7 +29,9 @@
 
 “自我批评这么诚恳，咋不见你改？”
 拜托，我忙啊，给我点动力呗？我看有没有的。关注以下微信公众号，**留言、赞赏！赞赏！赞赏！（没有比赞赏的动力来得要更猛烈些的了）**
+
 ![](http://upload-images.jianshu.io/upload_images/2954145-6a3fe179f43ec7d0.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 如若不然，就请给颗星吧
 
 ## 安装使用
