@@ -1,21 +1,31 @@
 # 在线版h5页面生成器 
 > node版在线微场景h5页面生成工具，精简版易企秀
 
-## 阅读前置条件
+演示地址：[传送门](http://h5.facemagic888.com/)
+
+## 目录说明
+1. 阅读前准备
+2. 概要
+3. 后台代码简读
+4. 前端代码简读
+5. 待完善功能
+6. 总结
+
+## 阅读前准备
 1. 了解node
 2. 了解express框架
 3. 了解mongodb以及node 连接框架 mongoose
 4. 了解nunjucks模板 
 
-## 说明
+## 概要
 设计思路和主要实现步骤都写在这里：[从零打造在线版H5页面生成器](http://www.jianshu.com/p/00681bc68caf)
 
-设计思路和主要实现步骤都是正经而且值得借鉴的（有点不谦虚哈），但是由于赶时间的玩的心态作祟，具体的代码细节上就显得有点混乱尴尬了，主要体现在这几个方面：
-1. 项目结构随性
-2. 未使用打包工具对代码进行压缩合并以及其它预编译处理，违背现在前端工程化的潮流，webpack.config.js放那唬人，就当是方便场景代码生成后阅读吧
-3. 可读性低，难以维护的模板代码
-4. 只兼容高版本的浏览器，建议在chrome上运行。由于自己很傲娇的使用formData来封装了图片上传插件，所以可以肯定的是，ie10以下的浏览器是肯定无法上传图片的
-5. 很多功能都没有完善，因为懒
+设计思路和主要实现步骤都是正经而且值得借鉴的（有点不谦虚哈），但是由于赶时间以及玩的心态作祟，具体的代码细节上就显得有点混乱尴尬了，主要体现在这几个方面：  
+1. 项目结构随性  
+2. 未使用打包工具对代码进行压缩合并以及其它预编译处理，违背现在前端工程化的潮流，webpack.config.js放那唬人，就当是方便场景代码生成后阅读吧  
+3. 可读性低，难以维护的模板代码  
+4. 只兼容高版本的浏览器，建议在chrome上运行。由于自己很傲娇的使用formData来封装了图片上传插件，所以可以肯定的是，ie10以下的浏览器是肯定无法上传图片的  
+5. 很多功能都没有完善，因为懒  
 
 “自我批评这么诚恳，咋不见你改？”
 拜托，我忙啊，给我点动力呗？我看有没有的。关注以下微信公众号，**留言、赞赏！赞赏！赞赏！（没有比赞赏的动力来得要更猛烈些的了）**
@@ -186,7 +196,99 @@
         };
     }
 ```
-2. 
+2. 面板切换：编辑屏、编辑文本、编辑图片对应了不同的编辑面板，需要适时切换，最重要的还是要切换的时候要把当前编辑的数据保存，也就是保存到上一步的`pageData`和`pageItemData`中
 
+### 四、屏/页控制器（page.js）
+场景页面的核心要素为：屏/页->屏内项目->项目动画，所以首先我们要构建的是屏/页控制对象，鉴于屏以及舞台上的所有操作的数据变化都需要rTap来监控，所以需要传入rTap来构造屏控制器对象
+1. 屏的增删改：每一屏应该有一个一一对应编辑舞台，也就是中间区域，用于编辑展示自身的背景，以及屏内元素。另外，请时刻记住还有一个rTab需要传进来构造
+```
+  /**
+   *  创建page
+   */
+  createPage: function() {
+      //索引递增
+      this.pageIndex++;
+
+      //增加page
+      var pageId = 'page' + this.pageIndex;
+      var pageHtml = ...;//此处省略几万字
+      var page = $(pageHtml);
+      $('#pageContainer').append(page);
+      //增加对应的舞台（同步创建舞台）
+      this.createStage(pageId);
+      //设置当前页
+      this.switchPage(pageId);
+  },
+```
+2. 创建拖拽对象，拖拽插件之前已经有单独的文章介绍，这里主要有两点需要注意，在item点击，以及舞台空白区域点击的时候插件以及有事件监听，插件外部我们也需要监听这两个事件来保存数据，所以需要使用回调的方法切入事件
+```
+  //创建拖拽对象
+  var self = this;
+  this.zresize = new ZResize({
+      stage: '#mainContent',
+      onTriggerItem: function(el) { //item获取焦点时候切入item数据保存处理
+          self.onItemTrigger(el);
+      },
+      onHideItem: function() { //点击舞台空白区域切入切换到page属性面板的处理
+          self.onHideItem();
+      },
+      onDrag: function(org, options) {
+          self.onDrag(org, options);
+      }
+  });
+```
+3. 判断是否为编辑状态/非新增：编辑状态需要把原先保存的数据置入，这个通过在模板中置入数据，但是需要将冰冷的数据增加可拖拽的能力，于是便有了如下处理
+```
+    //如果有pageItemData数据, 编辑状态
+    if(window.pageItemData) {
+        for(var key in pageItemData) {
+            self.zresize.addResizeCapa($('#' + key));
+        }
+    }
+```
+这里不得不说，由于编辑功能的存在，导致edit.html极其复杂的模板写法，在模板中需要遍历pages，并且遍历pages中的item，并且定义page和items的属性。同时还在此初始化了pageData，和pageItemData这两个伴随着应用的整个生命周期的内存对象。
+```
+<script type="text/javascript">
+        {% if data %}
+          window.isEdit = true; //编辑状态标志
+          window.settingData = {//项目配置信息
+              ...
+          };
+          window.pageData = {//pageData
+             ...
+          };
+          window.pageItemData = {//pageItemData
+            ...
+          }
+        {% endif %}
+</script>
+```
+edit.js中的弹窗处理，也需要通过模板注入的对象进行判断
+```
+  var self = this;
+  if (!window.isEdit) { //新建则弹出窗口
+      $('#pageInfoDialog').show();
+  } else { //编辑的时候注入
+      $('#author').val(settingData.author);
+      $('#projectName').val(settingData.name);
+      $('#projectDiscript').val(settingData.discript);
+      self.rTab.setPreview($('#uploadCover'), settingData.cover);
+  }
+```
+### 五、文本和图片控制器（textItem.js&imageItem.js）
+这两个对象跟page和rTab都是紧密结合的，所以需要传入page和rTab来构造，这两个item对象主要是控制面板的输入和舞台item在拖拽操作，以及这面板和舞台的级联关系
+> 说白了，就是一些事件监听
+
+## 待完善功能
+1. 图片库：实现图片可重用
+2. page之间的入场动画和出场动画定义（现在写死了一种）
+3. page的复制
+4. 默认主题库
+5. 背景音乐
+6. ..........
+> 感兴趣的同学们可以fork代码，改完之后pull request啊，服务全人类的事业进行到底
+
+## 总结
+如果说还需要总结的话，那么就是请关注！关注！关注！star!star!star!赞赏！赞赏！赞赏！
 
 
