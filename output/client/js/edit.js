@@ -250,7 +250,7 @@
             //点击取消按钮
             $('#cancel').bind('click', function() {
                 if (!settingData.name || !settingData.author) {
-                    location.href = 'home';
+                    location.href = '/';
                 } else {
                     $('#pageInfoDialog').hide();
                 }
